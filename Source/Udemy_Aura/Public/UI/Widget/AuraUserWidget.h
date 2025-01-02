@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "Components/TimelineComponent.h"
 #include "AuraUserWidget.generated.h"
 
 /**
@@ -17,7 +18,7 @@ class UDEMY_AURA_API UAuraUserWidget : public UUserWidget
 public:
 	UFUNCTION(BlueprintCallable)
 	void SetWidgetController(UObject* InWidgetController);
-	
+		
 	UPROPERTY(BlueprintReadOnly)
 	TObjectPtr<UObject> WidgetController;
 
