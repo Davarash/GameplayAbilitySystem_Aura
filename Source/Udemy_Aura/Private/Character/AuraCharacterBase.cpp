@@ -46,4 +46,11 @@ void AAuraCharacterBase::InitializeDefaultAttributes() const
 	ApplyEffectToSelf(DefaultVitalAttributes, 1.f);
 }
 
+void AAuraCharacterBase::AddCharacterAbilities()
+{
+	if (!HasAuthority()) return;
+
+	
+}
+
 
