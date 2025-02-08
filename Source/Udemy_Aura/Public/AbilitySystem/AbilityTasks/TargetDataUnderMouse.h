@@ -17,11 +17,18 @@ class UDEMY_AURA_API UTargetDataUnderMouse : public UAbilityTask
 	GENERATED_BODY()
 
 public:
+	
 	UFUNCTION(BlueprintCallable, Category = "Ability|Tasks", meta = (DisplayName = "TargetDataUnderMouse", HidePin = "OwningAbility", DefaultToSelf = "OwningAbility", BlueprintInternalUseOnly = "true"))
 	static UTargetDataUnderMouse* CreateTargetDataUnderMouse(UGameplayAbility* OwningAbility);
 
 	UPROPERTY(BlueprintAssignable)
 	FMouseTargetDataSignature ValidData;
+
+	/* TEST Implementation */
+
+	/* koniec */
+
+
 
 private:
 	virtual void Activate() override;

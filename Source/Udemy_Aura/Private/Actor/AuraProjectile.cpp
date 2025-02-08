@@ -49,7 +49,7 @@ void AAuraProjectile::Destroyed()
 		if (LoopingSoundComponent)
 		{
 			LoopingSoundComponent->Stop();
-			LoopingSoundComponent->DestroyComponent();
+			// LoopingSoundComponent->DestroyComponent();
 		}
 	}
 	
@@ -59,13 +59,22 @@ void AAuraProjectile::Destroyed()
 void AAuraProjectile::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
                                       UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	UGameplayStatics::PlaySoundAtLocation(this, ImpactSound, GetActorLocation(), FRotator::ZeroRotator);
-	UNiagaraFunctionLibrary::SpawnSystemAtLocation(this, ImpactEffect, GetActorLocation());
-	if (LoopingSoundComponent)
+	if (DamageEffectSpecHandle.Data.IsValid() && DamageEffectSpecHandle.Data.Get()->GetContext().GetEffectCauser() == OtherActor)
 	{
-		LoopingSoundComponent->Stop();
-		LoopingSoundComponent->DestroyComponent();
+		return;	
 	}
+	if (!bHit)
+	{
+		UGameplayStatics::PlaySoundAtLocation(this, ImpactSound, GetActorLocation(), FRotator::ZeroRotator);
+		UNiagaraFunctionLibrary::SpawnSystemAtLocation(this, ImpactEffect, GetActorLocation());
+		if (LoopingSoundComponent)
+		{
+			LoopingSoundComponent->Stop();
+			// LoopingSoundComponent->DestroyComponent();
+		}
+	}
+	
+	
 
 
 	if (HasAuthority())
