@@ -182,7 +182,6 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 			const bool bBlock = UAuraAbilitySystemLibrary::IsBlockedHit(Props.EffectContextHandle);
 			const bool bCriticalHit = UAuraAbilitySystemLibrary::IsCriticalHit(Props.EffectContextHandle);
 			ShowFloatingText(Props, LocalIncomingDamage, bBlock, bCriticalHit);
-			//bBlock ? GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, TEXT("Hit is Blocked!")) : GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, TEXT("Hit is not Blocked!"));
 		}
 	}
 	
@@ -194,7 +193,11 @@ void UAuraAttributeSet::ShowFloatingText(const FEffectProperties& Props, float D
 	{
 		if (AAuraPlayerController* PC = Cast<AAuraPlayerController>(Props.SourceCharacter->Controller))
 		{
-			//bBlockedHit ? GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Hit is Blocked!")) : GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Hit is not Blocked!"));
+			PC->ShowDamageNumber(Damage, Props.TargetCharacter, bBlockedHit, bCriticalHit);
+			return;
+		}
+		if (AAuraPlayerController* PC = Cast<AAuraPlayerController>(Props.TargetCharacter->Controller))
+		{
 			PC->ShowDamageNumber(Damage, Props.TargetCharacter, bBlockedHit, bCriticalHit);
 		}
 	}

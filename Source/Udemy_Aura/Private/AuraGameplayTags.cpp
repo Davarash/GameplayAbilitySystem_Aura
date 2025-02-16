@@ -185,16 +185,39 @@ void FAuraGameplayTags::InitializeNativeGameplayTags()
 	
 	/*
 	 * Effects
-	*/
+	 */
 	
 	GameplayTags.Effects_HitReact = UGameplayTagsManager::Get().AddNativeGameplayTag(
 		FName("Effects.HitReact"), 
 		FString("Tag granted when Hit Reacting")
 		);
 
+	/*
+	 * Abilities
+	 */
+	
+	GameplayTags.Abilities_Attack = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("Abilities.Attack"), 
+		FString("Attack Ability Tag")
+		);
 
+	/*
+	 * Montage
+	 */
 	
-	//GameplayTags.Attributes_Vital_Health = UGameplayTagsManager::Get().AddNativeGameplayTag(FName("Attributes.Secondary.Health"), FString("Health"));
-	//GameplayTags.Attributes_Vital_Mana = UGameplayTagsManager::Get().AddNativeGameplayTag(FName("Attributes.Secondary.Mana"), FString("Mana"));
-	
+	GameplayTags.Montage_Attack_Weapon = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("Montage.Attack.Weapon"), 
+		FString("Weapon Socket")
+		);
+
+	GameplayTags.Montage_Attack_RightHand = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("Montage.Attack.RightHand"), 
+		FString("RightHand Socket")
+	);
+
+	GameplayTags.Montage_Attack_LeftHand = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("Montage.Attack.LeftHand"), 
+		FString("LeftHand Socket")
+	);
+
 }
