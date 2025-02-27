@@ -24,10 +24,6 @@ public:
 	UPROPERTY(BlueprintAssignable)
 	FMouseTargetDataSignature ValidData;
 
-	/* TEST Implementation */
-
-	/* koniec */
-
 
 
 private:
