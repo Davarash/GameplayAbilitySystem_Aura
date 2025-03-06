@@ -17,7 +17,6 @@ struct FAuraInputAction
 
 	UPROPERTY(EditDefaultsOnly)
 	FGameplayTag InputTag = FGameplayTag();
-	// const FGameplayTag InputTag = FGameplayTag();
 };
 
 /**
