@@ -36,20 +36,13 @@ void UTargetDataUnderMouse::Activate()
 
 }
 
-/* 
-*   W funkcji SendMouseCursorData() oraz OnTargetDataReplicatedCallBack() musi być jakiś błąd, ponieważ data z kursora
-*   nie jest replikowana z klienta na serwer w wyniku czego, bohaterownie z klieta zawsze wypuszczają fireballs
-*   w kieurnku (0,0,0), na kliencie data.localition jest wporządku, debug też pokazuje poprawny przesyłanie informacji,
-*   ale z jakiegoś zwględu nie działa.
-* */ 
-
 void UTargetDataUnderMouse::SendMouseCursorData()
 {
 	FScopedPredictionWindow ScopedPrediction(AbilitySystemComponent.Get());
 	
 	APlayerController* PC = Ability->GetCurrentActorInfo()->PlayerController.Get();
 	FHitResult CursorHit;
-	PC->GetHitResultUnderCursor(ECC_Target, false, CursorHit);
+	PC->GetHitResultUnderCursor(ECC_Target, true, CursorHit);
 
 	FGameplayAbilityTargetDataHandle DataHandle;
 	FGameplayAbilityTargetData_SingleTargetHit* Data = new FGameplayAbilityTargetData_SingleTargetHit();
