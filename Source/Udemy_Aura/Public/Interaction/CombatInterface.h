@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameplayTagContainer.h"
 #include "AbilitySystem/Data/CharacterClassInfo.h"
+//#include "Character/AuraCharacterBase.h"
 #include "UObject/Interface.h"
 #include "CombatInterface.generated.h"
 
@@ -14,6 +15,7 @@ class UAnimMontage;
 
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnASCRegistered, UAbilitySystemComponent*);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnDeathSignature, AActor*, DeadActor);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnDamageSignature, float /* DamageAmount */)
 
 USTRUCT(BlueprintType)
 struct FTaggedMontage
@@ -67,7 +69,8 @@ public:
 
 	virtual void Die(const FVector& DeathImpulse) = 0;
 	virtual FOnDeathSignature& GetOnDeathDelegate() = 0;
-
+	virtual FOnDamageSignature& GetOnDamageSignature() = 0;
+ 
 	virtual void Knockback(const FVector& KnockbackImpulse) = 0;
 	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
